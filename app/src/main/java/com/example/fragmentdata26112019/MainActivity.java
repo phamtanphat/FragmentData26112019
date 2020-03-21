@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 
 
 import com.google.android.material.navigation.NavigationView;
@@ -38,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Bat su kien cho header
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = headerView.findViewById(R.id.textviewTitleHeader);
+        navUsername.setText("Your Text Here");
 
     }
 }
