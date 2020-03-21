@@ -44,5 +44,7 @@ public class MainActivity extends AppCompatActivity {
         TextView navUsername = headerView.findViewById(R.id.textviewTitleHeader);
         navUsername.setText("Your Text Here");
 
+
+
     }
 }
