@@ -26,6 +26,7 @@
                 android:layout_height="match_parent"/>
         </LinearLayout>
         <com.google.android.material.navigation.NavigationView
+            app:headerLayout="@layout/layout_header_navi"
             android:id="@+id/navigation"
             android:layout_gravity="left"
             android:layout_width="match_parent"
