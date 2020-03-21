@@ -11,18 +11,23 @@
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
         <LinearLayout
             android:orientation="vertical"
-            android:id="@+id/linearContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
+            android:layout_height="match_parent">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/linearContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigation"
-            android:layout_gravity="start"
+            android:layout_gravity="left"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </androidx.drawerlayout.widget.DrawerLayout>
