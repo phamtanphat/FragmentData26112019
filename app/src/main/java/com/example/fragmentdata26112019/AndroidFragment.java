@@ -2,6 +2,7 @@ package com.example.fragmentdata26112019;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -27,9 +28,20 @@ public class AndroidFragment extends Fragment {
         v = inflater.inflate(R.layout.fragment_android, container, false);
         edtAndroid = v.findViewById(R.id.edittextAndroid);
         btnAndroid = v.findViewById(R.id.buttonAndroid);
-        Bundle bundle = getArguments();
-        String value = bundle.getString("text");
-        edtAndroid.setText(value);
+//        Bundle bundle = getArguments();
+//        String value = bundle.getString("text");
+//        edtAndroid.setText(value);
         return v;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        ((MainActivity)getActivity()).getDataChange(new OnListenDataActivity() {
+            @Override
+            public void onDataChange(String s) {
+                edtAndroid.setText(s);
+            }
+        });
+        super.onActivityCreated(savedInstanceState);
     }
 }

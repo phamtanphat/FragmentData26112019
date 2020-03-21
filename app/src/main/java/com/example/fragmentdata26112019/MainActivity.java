@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     FragmentManager fragmentManager;
     Fragment fragment;
+    OnListenDataActivity onListenDataActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,15 +58,15 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                fragment = null;
+//                fragment = null;
                 switch (menuItem.getItemId()){
                     case R.id.menu_item_import :
-                        fragment = new AndroidFragment();
-
+//                        fragment = new AndroidFragment();
+                        onListenDataActivity.onDataChange("Import");
                         Toast.makeText(MainActivity.this, "Import", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_item_galery :
-                        fragment = new IosFragment();
+                        onListenDataActivity.onDataChange("Galery");
                         Toast.makeText(MainActivity.this, "Galery", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_item_slideshow :
@@ -78,16 +79,18 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Google", Toast.LENGTH_SHORT).show();
                         break;
                 }
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                Bundle bundle = new Bundle();
-                bundle.putString("text","Hello");
-                fragment.setArguments(bundle);
-                fragmentTransaction.add(R.id.linearContainer,fragment);
-                fragmentTransaction.commit();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                Bundle bundle = new Bundle();
+//                bundle.putString("text","Hello");
+//                fragment.setArguments(bundle);
+//                fragmentTransaction.add(R.id.linearContainer,fragment);
+//                fragmentTransaction.commit();
                 drawerLayout.closeDrawer(Gravity.LEFT);
                 return false;
             }
         });
-
+    }
+    public void getDataChange(OnListenDataActivity onListenDataActivity){
+        this.onListenDataActivity = onListenDataActivity;
     }
 }
