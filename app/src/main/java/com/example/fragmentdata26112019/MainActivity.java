@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,11 +24,14 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    FragmentManager fragmentManager;
+    Fragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fragmentManager = getSupportFragmentManager();
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigation);
         toolbar  = findViewById(R.id.toolbar);
@@ -51,11 +57,15 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                fragment = null;
                 switch (menuItem.getItemId()){
                     case R.id.menu_item_import :
+                        fragment = new AndroidFragment();
+
                         Toast.makeText(MainActivity.this, "Import", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_item_galery :
+                        fragment = new IosFragment();
                         Toast.makeText(MainActivity.this, "Galery", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_item_slideshow :
@@ -68,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Google", Toast.LENGTH_SHORT).show();
                         break;
                 }
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Bundle bundle = new Bundle();
+                bundle.putString("text","Hello");
+                fragment.setArguments(bundle);
+                fragmentTransaction.add(R.id.linearContainer,fragment);
+                fragmentTransaction.commit();
                 drawerLayout.closeDrawer(Gravity.LEFT);
                 return false;
             }
